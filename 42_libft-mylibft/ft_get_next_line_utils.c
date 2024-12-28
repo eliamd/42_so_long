@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:18:06 by edetoh            #+#    #+#             */
-/*   Updated: 2024/11/26 11:09:14 by edetoh           ###   ########.fr       */
+/*   Updated: 2024/12/27 16:20:05 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,6 @@ t_list_gnl	*ft_lstlast_gnl(t_list_gnl *lst)
 		lst = lst->next;
 	}
 	return (lst);
-}
-
-char	*ft_strdup(const char *s)
-{
-	char	*strduped;
-	int		i;
-	int		length;
-
-	length = 0;
-	while (s[length] != '\0')
-	{
-		length++;
-	}
-	strduped = malloc((length + 1) * sizeof(char));
-	if (!strduped)
-		return (NULL);
-	i = 0;
-	while (i < length)
-	{
-		strduped[i] = s[i];
-		i++;
-	}
-	strduped[i] = '\0';
-	return (strduped);
 }
 
 void	create_list(t_list_gnl **list, int fd)
