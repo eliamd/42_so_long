@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:03:39 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 16:03:13 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 16:18:33 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,18 @@
 
 static int	init_mlx(t_game *game)
 {
-	game->mlx = mlx_init(game->map->width * TILE_SIZE,
-			game->map->height * TILE_SIZE, "so_long", true);
+	int	window_width;
+	int	window_height;
+
+	if (game->map->width <= 0 || game->map->height <= 0)
+	{
+		free_map(game->map);
+		ft_putstr_fd(ERR_MAP_SIZE, 2);
+		return (0);
+	}
+	window_width = game->map->width * TILE_SIZE;
+	window_height = game->map->height * TILE_SIZE;
+	game->mlx = mlx_init(window_width, window_height, "so_long", true);
 	if (!game->mlx)
 	{
 		free_map(game->map);

@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 22:59:47 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 16:03:15 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 16:09:25 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define ERR_LOAD_TEXTURES "Error\nFailed to load textures\n"
 # define ERR_PARSE_MAP "Error\nFailed to parse map\n"
 # define ERR_MAP_IMPOSSIBLE "Error\nMap is not solvable\n"
+# define ERR_MAP_SIZE "Error\nMap dimensions are invalid\n"
 
 // Structures
 typedef struct s_map

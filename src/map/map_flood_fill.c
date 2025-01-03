@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:00:00 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 16:03:20 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 16:19:39 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@ int	is_map_solvable(t_map *map)
 	t_point	size;
 	t_point	start;
 	int		collectibles;
+	int		tmp;
 
+	tmp = map->height;
 	temp_grid = duplicate_grid(map);
 	if (!temp_grid)
 		return (0);
@@ -83,8 +85,8 @@ int	is_map_solvable(t_map *map)
 	start = find_player(map);
 	collectibles = 0;
 	flood_fill(temp_grid, size, start, &collectibles);
-	while (map->height--)
-		free(temp_grid[map->height]);
+	while (tmp--)
+		free(temp_grid[tmp]);
 	free(temp_grid);
 	if (collectibles != map->collectibles)
 		return (0);
