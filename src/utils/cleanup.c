@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:00:22 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 11:58:02 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 12:56:16 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,17 @@ void	free_map(t_map *map)
 {
 	int	i;
 
-	if (!map)
+	if (!map || !map->grid)
 		return ;
-	if (map->grid)
+	i = 0;
+	while (i < map->height && map->grid[i])
 	{
-		write(1, "ici free_ma1\n", 14);
-		ft_printf("map->height : %i\n", map->height);
-		i = 0;
-		while (i < map->height)
-		{
-			if (map->grid[i])
-			{
-				ft_printf("Freeing map->grid[%i] : %p\n", i, map->grid[i]);
-				free(map->grid[i]);
-				ft_printf("Freed map->grid[%i]\n", i);
-				map->grid[i] = NULL;
-			}
-			i++;
-		}
-		write(1, "ici free_ma2\n", 14);
-		free(map->grid);
-		map->grid = NULL;
+		ft_printf("Freeing line %d: %p\n", i, map->grid[i]);
+		if (map->grid[i])
+			free(map->grid[i]);
+		i++;
 	}
+	free(map->grid);
 	free(map);
 }
 

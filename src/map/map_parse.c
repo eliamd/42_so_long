@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:09:12 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 11:29:36 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 12:56:26 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,17 @@ static int	get_map_size(char *map_path, t_map *map)
 
 static int	allocate_grid(t_map *map)
 {
+	int	i;
+
 	map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
 	if (!map->grid)
 		return (0);
-	map->grid[map->height] = NULL;
+	i = 0;
+	while (i <= map->height)
+	{
+		map->grid[i] = NULL;
+		i++;
+	}
 	return (1);
 }
 
