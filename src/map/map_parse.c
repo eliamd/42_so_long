@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:09:12 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 10:31:17 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 11:29:36 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,13 @@ static int	read_map_line(int fd, t_map *map, int y)
 	if (line[len - 1] == '\n')
 		line[len - 1] = '\0';
 	map->grid[y] = ft_strdup(line);
-	if (!map->grid[y])
-		return (0);
 	free(line);
 	if (!map->grid[y] || (int)ft_strlen(map->grid[y]) != map->width)
 	{
 		while (y >= 0)
 			free(map->grid[y--]);
 		free(map->grid);
+		write(1, "ici1\n", 5);
 		return (0);
 	}
 	return (1);
@@ -91,7 +90,10 @@ int	parse_map(t_game *game, char *map_path)
 	while (y < game->map->height)
 	{
 		if (!read_map_line(fd, game->map, y++))
+		{
+			write(1, "ici2\n", 5);
 			return (0);
+		}
 	}
 	close(fd);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:03:39 by edetoh            #+#    #+#             */
-/*   Updated: 2024/12/27 16:30:23 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 11:30:41 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	init_map_struct(t_game *game, char *map_path)
 	if (!parse_map(game, map_path) || !validate_map(game->map))
 	{
 		free_map(game->map);
+		write(1, "ici3\n", 5);
 		return (0);
 	}
 	return (1);
