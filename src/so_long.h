@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 22:59:47 by edetoh            #+#    #+#             */
-/*   Updated: 2024/12/27 16:21:25 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 11:01:31 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include "../42_libft-mylibft/libft.h"
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "../minilibx/include/MLX42/MLX42.h"
 # include <fcntl.h>
 
 // Configuration constants

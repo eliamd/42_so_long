@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:13:01 by edetoh            #+#    #+#             */
-/*   Updated: 2024/12/27 22:12:09 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 11:02:41 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_map_extension(char *filename)
 		return (0);
 	return (1);
 }
-// a refaire
+
 int	check_map_walls(t_map *map)
 {
 	int	i;
