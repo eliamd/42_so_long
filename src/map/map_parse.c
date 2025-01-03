@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:09:12 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 13:24:08 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 13:52:00 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	parse_map(t_game *game, char *map_path)
 	{
 		if (!read_map_line(fd, game->map, y++))
 		{
-			write(1, "ici2\n", 5);
 			return (0);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 15:12:44 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 14:00:55 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 14:47:06 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,22 @@ static void	render_tile(t_game *game, int x, int y)
 
 void	render_map(t_game *game)
 {
-	int	x;
-	int	y;
+	int				x;
+	int				y;
+	mlx_texture_t	*texture;
 
-	if (game->player->count > 0)
+	if (game->player)
+	{
 		mlx_delete_image(game->mlx, game->player);
-	game->player = mlx_texture_to_image(game->mlx,
-			mlx_load_png("assets/player.png"));
-	if (!game->player || !mlx_resize_image(game->player, TILE_SIZE, TILE_SIZE))
+		game->player = NULL;
+	}
+	texture = mlx_load_png("assets/player.png");
+	if (!texture)
 		return ;
+	game->player = mlx_texture_to_image(game->mlx, texture);
+	if (!game->player || !mlx_resize_image(game->player, TILE_SIZE, TILE_SIZE))
+		return (mlx_delete_texture(texture));
+	mlx_delete_texture(texture);
 	y = -1;
 	while (++y < game->map->height)
 	{

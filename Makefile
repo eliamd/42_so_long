@@ -77,10 +77,7 @@ endef
 
 # ============================== REGLES PRINCIPALES ========================== #
 
-all:			os_msg $(LIBFT) $(MLX42) $(NAME)
-
-os_msg:
-			@printf "$(RED)[INFO] OS: %s$(NC)\n" $(OS_MSG)
+all:			$(LIBFT) $(MLX42) $(NAME)
 
 # Compilation de la libft
 $(LIBFT):

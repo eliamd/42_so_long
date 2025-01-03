@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:00:22 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 13:08:38 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 13:51:40 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	free_map(t_map *map)
 		{
 			if (map->grid[i])
 			{
-				ft_printf("freeing map->grid[%d]\n", i);
 				free(map->grid[i]);
-				ft_printf("freedd map->grid[%d]\n", i);
 				map->grid[i] = NULL;
 			}
 			i++;
