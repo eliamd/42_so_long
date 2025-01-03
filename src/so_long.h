@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 22:59:47 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 11:01:31 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 13:25:55 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_game
 }				t_game;
 
 // Initialization functions
+int			allocate_grid(t_map *map);
 int			init_game(t_game *game, char *map_path);
 int			init_textures(t_game *game);
 

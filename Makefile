@@ -50,6 +50,7 @@ endif
 # =============================== SOURCES ===================================== #
 
 SRCS = 	src/main.c \
+		src/map/map_malloc.c \
 		src/map/map_check.c \
 		src/map/map_parse.c \
 		src/init/init_game.c \

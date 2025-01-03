@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:09:12 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 12:56:26 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 13:24:08 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,49 @@ static int	get_map_size(char *map_path, t_map *map)
 	return (close(fd), 1);
 }
 
-static int	allocate_grid(t_map *map)
+static void	free_grid_until(t_map *map, int y)
 {
-	int	i;
-
-	map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
-	if (!map->grid)
-		return (0);
-	i = 0;
-	while (i <= map->height)
+	while (y >= 0)
 	{
-		map->grid[i] = NULL;
-		i++;
+		if (map->grid[y])
+		{
+			free(map->grid[y]);
+			map->grid[y] = NULL;
+		}
+		y--;
 	}
+	free(map->grid);
+	map->grid = NULL;
+}
+
+static int	allocate_and_copy_line(t_map *map, int y, char *line)
+{
+	if (line[ft_strlen(line) - 1] == '\n')
+		line[ft_strlen(line) - 1] = '\0';
+	map->grid[y] = (char *)malloc(sizeof(char) * (map->width + 1));
+	if (!map->grid[y])
+	{
+		free(line);
+		free_grid_until(map, y - 1);
+		return (0);
+	}
+	ft_strlcpy(map->grid[y], line, map->width + 1);
 	return (1);
 }
 
 static int	read_map_line(int fd, t_map *map, int y)
 {
 	char	*line;
-	size_t	len;
 
 	line = get_next_line(fd);
 	if (!line)
 		return (0);
-	len = ft_strlen(line);
-	if (line[len - 1] == '\n')
-		line[len - 1] = '\0';
-	map->grid[y] = ft_strdup(line);
+	if (!allocate_and_copy_line(map, y, line))
+		return (0);
 	free(line);
-	if (!map->grid[y] || (int)ft_strlen(map->grid[y]) != map->width)
+	if ((int)ft_strlen(map->grid[y]) != map->width)
 	{
-		while (y >= 0)
-			free(map->grid[y--]);
-		free(map->grid);
-		write(1, "ici1\n", 5);
+		free_grid_until(map, y);
 		return (0);
 	}
 	return (1);
