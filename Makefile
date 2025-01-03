@@ -53,6 +53,7 @@ SRCS = 	src/main.c \
 		src/map/map_malloc.c \
 		src/map/map_check.c \
 		src/map/map_parse.c \
+		src/map/map_flood_fill.c \
 		src/init/init_game.c \
 		src/init/init_textures.c \
 		src/utils/cleanup.c \

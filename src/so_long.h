@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 22:59:47 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 13:25:55 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/03 16:03:15 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ERR_INIT_MLX "Error\nFailed to initialize MLX\n"
 # define ERR_LOAD_TEXTURES "Error\nFailed to load textures\n"
 # define ERR_PARSE_MAP "Error\nFailed to parse map\n"
+# define ERR_MAP_IMPOSSIBLE "Error\nMap is not solvable\n"
 
 // Structures
 typedef struct s_map
@@ -66,6 +67,12 @@ typedef struct s_game
 	int			player_y;
 }				t_game;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
+
 // Initialization functions
 int			allocate_grid(t_map *map);
 int			init_game(t_game *game, char *map_path);
@@ -78,6 +85,10 @@ void		free_map(t_map *map);
 int			validate_map(t_map *map);
 int			check_map_elements(t_map *map);
 int			check_map_walls(t_map *map);
+
+// Map validation functions
+int			is_map_solvable(t_map *map);
+char		**duplicate_grid(t_map *map);
 
 // Game mechanics functions
 void		move_player(t_game *game, int dx, int dy);
