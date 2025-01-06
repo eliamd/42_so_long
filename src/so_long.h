@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 22:59:47 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 16:09:25 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/06 13:04:54 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int			init_game(t_game *game, char *map_path);
 int			init_textures(t_game *game);
 
 // Map handling functions
+t_point		find_player(t_map *map);
+char		**duplicate_grid(t_map *map);
 int			check_map_extension(char *filename);
 int			parse_map(t_game *game, char *map_path);
 void		free_map(t_map *map);

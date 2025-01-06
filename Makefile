@@ -8,7 +8,7 @@ LIBFT_PATH		= 42_libft-mylibft
 MLX42			= $(MLX42_PATH)/build/libmlx42.a
 LIBFT			= $(LIBFT_PATH)/libft.a
 RM				= rm -f
-CLONE 			= git clone --depth=1
+CLONE 			= git submodule init && git submodule update
 
 # ================================ COULEURS =================================== #
 
@@ -53,6 +53,7 @@ SRCS = 	src/main.c \
 		src/map/map_malloc.c \
 		src/map/map_check.c \
 		src/map/map_parse.c \
+		src/map/map_flood_fill_utils.c \
 		src/map/map_flood_fill.c \
 		src/init/init_game.c \
 		src/init/init_textures.c \
@@ -88,9 +89,12 @@ $(LIBFT):
 
 # Compilation de MLX42
 $(MLX42):
+
+			@echo "$(YELLOW)Cloning MLX42 submodule...$(NC)"
+			$(CLONE)
 			@printf "$(BLUE)[  0%%] $(GREEN)Building MLX42...$(NC)\n"
 			@cmake $(MLX42_PATH) -B $(MLX42_PATH)/build
-			@make -C $(MLX42_PATH)/build -j4
+			@make -C $(MLX42_PATH)/build
 			@printf "$(BLUE)[100%%] $(GREEN)MLX42 built successfully$(NC)\n"
 
 $(NAME): $(OBJS)
