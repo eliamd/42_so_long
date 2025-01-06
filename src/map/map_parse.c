@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:09:12 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 16:18:25 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/06 10:50:09 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,6 @@ static int	read_map_line(int fd, t_map *map, int y)
 	if (!allocate_and_copy_line(map, y, line))
 		return (0);
 	free(line);
-	if ((int)ft_strlen(map->grid[y]) != map->width)
-	{
-		free_grid_until(map, y);
-		return (0);
-	}
 	return (1);
 }
 

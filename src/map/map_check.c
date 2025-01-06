@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:13:01 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 11:02:41 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/06 10:53:18 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_map_elements(t_map *map)
 		x = -1;
 		while (++x < map->width)
 		{
-			if (!ft_strchr("01CEP", map->grid[y][x]))
+			if (!map->grid[y][x] || !ft_strchr("01CEP", map->grid[y][x]))
 				return (0);
 			if (map->grid[y][x] == PLAYER)
 				map->player++;

@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 14:00:00 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/03 16:19:39 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/06 11:35:19 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char	**duplicate_grid(t_map *map)
 static void	flood_fill(char **grid, t_point size, t_point cur, int *collect)
 {
 	if (cur.x < 0 || cur.x >= size.x || cur.y < 0 || cur.y >= size.y
-		|| grid[cur.y][cur.x] == WALL || grid[cur.y][cur.x] == 'V')
+		|| grid[cur.y][cur.x] == WALL || grid[cur.y][cur.x] == EXIT \
+		|| grid[cur.y][cur.x] == 'V')
 		return ;
 	if (grid[cur.y][cur.x] == COLLECTIBLE)
 		(*collect)++;
@@ -48,6 +49,21 @@ static void	flood_fill(char **grid, t_point size, t_point cur, int *collect)
 	flood_fill(grid, size, (t_point){cur.x - 1, cur.y}, collect);
 	flood_fill(grid, size, (t_point){cur.x, cur.y + 1}, collect);
 	flood_fill(grid, size, (t_point){cur.x, cur.y - 1}, collect);
+}
+
+static void	flood_fill_exi(char **grid, t_point size, t_point cur, int *collect)
+{
+	if (cur.x < 0 || cur.x >= size.x || cur.y < 0 || cur.y >= size.y
+		|| grid[cur.y][cur.x] == WALL \
+		|| grid[cur.y][cur.x] == 'V')
+		return ;
+	if (grid[cur.y][cur.x] == EXIT)
+		(*collect)++;
+	grid[cur.y][cur.x] = 'V';
+	flood_fill_exi(grid, size, (t_point){cur.x + 1, cur.y}, collect);
+	flood_fill_exi(grid, size, (t_point){cur.x - 1, cur.y}, collect);
+	flood_fill_exi(grid, size, (t_point){cur.x, cur.y + 1}, collect);
+	flood_fill_exi(grid, size, (t_point){cur.x, cur.y - 1}, collect);
 }
 
 static t_point	find_player(t_map *map)
@@ -74,7 +90,7 @@ int	is_map_solvable(t_map *map)
 	char	**temp_grid;
 	t_point	size;
 	t_point	start;
-	int		collectibles;
+	t_point	collectibles;
 	int		tmp;
 
 	tmp = map->height;
@@ -83,12 +99,17 @@ int	is_map_solvable(t_map *map)
 		return (0);
 	size = (t_point){map->width, map->height};
 	start = find_player(map);
-	collectibles = 0;
-	flood_fill(temp_grid, size, start, &collectibles);
+	collectibles = (t_point){0, 0};
+	flood_fill(temp_grid, size, start, &collectibles.x);
+	temp_grid = duplicate_grid(map);
+	if (!temp_grid)
+		return (0);
+	size = (t_point){map->width, map->height};
+	start = find_player(map);
+	flood_fill_exi(temp_grid, size, start, &collectibles.y);
 	while (tmp--)
 		free(temp_grid[tmp]);
-	free(temp_grid);
-	if (collectibles != map->collectibles)
+	if (collectibles.x != map->collectibles || collectibles.y != map->exit)
 		return (0);
-	return (1);
+	return (free(temp_grid), 1);
 }
