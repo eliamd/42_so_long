@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:09:12 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/06 10:50:09 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/07 14:31:21 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,14 @@ static int	allocate_and_copy_line(t_map *map, int y, char *line)
 {
 	if (line[ft_strlen(line) - 1] == '\n')
 		line[ft_strlen(line) - 1] = '\0';
-	map->grid[y] = (char *)malloc(sizeof(char) * (map->width + 1));
+	map->grid[y] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (!map->grid[y])
 	{
 		free(line);
 		free_grid_until(map, y - 1);
 		return (0);
 	}
-	ft_strlcpy(map->grid[y], line, map->width + 1);
+	ft_strlcpy(map->grid[y], line, ft_strlen(line) + 1);
 	return (1);
 }
 

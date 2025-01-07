@@ -6,7 +6,7 @@
 /*   By: edetoh <edetoh@student.42lehavre.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:13:01 by edetoh            #+#    #+#             */
-/*   Updated: 2025/01/06 10:53:18 by edetoh           ###   ########.fr       */
+/*   Updated: 2025/01/07 14:25:30 by edetoh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	check_map_elements(t_map *map)
 			else if (map->grid[y][x] == COLLECTIBLE)
 				map->collectibles++;
 		}
+		if (ft_strlen(map->grid[y]) != (size_t)map->width)
+			return (0);
 	}
 	return (map->player == 1 && map->exit == 1 && map->collectibles > 0);
 }
