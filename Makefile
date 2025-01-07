@@ -89,7 +89,6 @@ $(LIBFT):
 
 # Compilation de MLX42
 $(MLX42):
-
 			@echo "$(YELLOW)Cloning MLX42 submodule...$(NC)"
 			$(CLONE)
 			@printf "$(BLUE)[  0%%] $(GREEN)Building MLX42...$(NC)\n"
